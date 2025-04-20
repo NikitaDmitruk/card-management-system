@@ -1,4 +1,5 @@
 package by.testprojects.cardmanagementsystem.entity;
 
-public class CardType {
+public enum CardType {
+    VISA, MASTERCARD, MIR
 }

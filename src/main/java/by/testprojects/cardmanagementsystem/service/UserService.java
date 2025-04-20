@@ -1,13 +1,15 @@
-package by.testprojects.cardmanagementsystem.security.service;
+package by.testprojects.cardmanagementsystem.service;
 
 import by.testprojects.cardmanagementsystem.exception.UserNotFoundException;
-import by.testprojects.cardmanagementsystem.security.entity.User;
-import by.testprojects.cardmanagementsystem.security.repository.UserRepository;
+import by.testprojects.cardmanagementsystem.entity.User;
+import by.testprojects.cardmanagementsystem.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -35,5 +37,17 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) {
         return findByEmail(email);
     }
+
+    public List<User> getAll() {
+        return userRepository.findAll();
+    }
+
+    public void deleteById(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException(id);
+        }
+        userRepository.deleteById(id);
+    }
+
 
 }

@@ -1,0 +1,53 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: CardManagementSystemApplication
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yml
+    default-schema: public
+    liquibase-schema: public
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect:
+  #  h2:
+  #    console:
+  #      enabled: true
+  #      settings:
+  #        web-allow-others: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 30
+        serialization-mode: via_dto
+
+card:
+  encryption:
+    key: CtNkxoQBmhV8tjJEi9A4vP86ws9MxjTz
+
+jwt:
+  secret-key: 5f4dcc3b5aa765d61d8327deb882cf99b7c92a3d0eb9e9a9f9d9e8d7c6b5a4a3
+  expiration: 3600000
+  issuer: card-management-api
+
+logging:
+  level:
+    org:
+      hibernate: warn
+
+
+
+

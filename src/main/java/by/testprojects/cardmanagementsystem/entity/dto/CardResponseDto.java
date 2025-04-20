@@ -17,7 +17,7 @@ import static by.testprojects.cardmanagementsystem.Constants.EXPIRY_DATE_FORMAT_
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CardDto {
+public class CardResponseDto {
     private UUID id;
     private String maskedNumber;
     private String cardHolder;

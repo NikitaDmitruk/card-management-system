@@ -1,6 +1,6 @@
-package by.testprojects.cardmanagementsystem.security.repository;
+package by.testprojects.cardmanagementsystem.repository;
 
-import by.testprojects.cardmanagementsystem.security.entity.User;
+import by.testprojects.cardmanagementsystem.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

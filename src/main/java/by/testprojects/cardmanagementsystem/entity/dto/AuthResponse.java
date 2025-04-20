@@ -1,4 +1,4 @@
-package by.testprojects.cardmanagementsystem.security.entity.Dto;
+package by.testprojects.cardmanagementsystem.entity.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,8 @@
-package by.testprojects.cardmanagementsystem.security;
+package by.testprojects.cardmanagementsystem.controller;
 
-import by.testprojects.cardmanagementsystem.security.entity.Dto.AuthRequest;
-import by.testprojects.cardmanagementsystem.security.entity.Dto.AuthResponse;
-import by.testprojects.cardmanagementsystem.security.entity.Dto.RegisterRequest;
+import by.testprojects.cardmanagementsystem.entity.dto.AuthRequest;
+import by.testprojects.cardmanagementsystem.entity.dto.AuthResponse;
+import by.testprojects.cardmanagementsystem.entity.dto.RegisterRequest;
 import by.testprojects.cardmanagementsystem.security.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
-package by.testprojects.cardmanagementsystem.security.mapper;
+package by.testprojects.cardmanagementsystem.entity.mapper;
 
-import by.testprojects.cardmanagementsystem.security.entity.Dto.RegisterRequest;
-import by.testprojects.cardmanagementsystem.security.entity.User;
+import by.testprojects.cardmanagementsystem.entity.dto.RegisterRequest;
+import by.testprojects.cardmanagementsystem.entity.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

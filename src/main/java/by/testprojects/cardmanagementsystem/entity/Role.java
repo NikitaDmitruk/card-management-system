@@ -1,4 +1,4 @@
-package by.testprojects.cardmanagementsystem.security.entity;
+package by.testprojects.cardmanagementsystem.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

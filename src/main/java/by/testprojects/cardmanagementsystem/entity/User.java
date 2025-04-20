@@ -1,6 +1,5 @@
-package by.testprojects.cardmanagementsystem.security.entity;
+package by.testprojects.cardmanagementsystem.entity;
 
-import by.testprojects.cardmanagementsystem.entity.Card;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,6 +31,7 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Card> cards;
 
     @Override

@@ -1,4 +1,5 @@
 package by.testprojects.cardmanagementsystem.entity;
 
-public class CardStatus {
+public enum CardStatus {
+    ACTIVE, BLOCKED, EXPIRED
 }

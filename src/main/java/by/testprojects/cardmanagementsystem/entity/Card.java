@@ -4,9 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.builder.ToStringExclude;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,8 +18,9 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "bank_cards")
-public class BankCard {
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "cards")
+public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -33,13 +38,28 @@ public class BankCard {
     private LocalDate expiryDate;    // Формат MM/YY
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    private CardStatus status;      // ACTIVE, BLOCKED, EXPIRED
+    @Column(nullable = false)
+    private CardType cardType;
 
-    @Column(name = "balance", nullable = false)
-    private BigDecimal balance;     // DECIMAL(19,4)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private CardStatus status = CardStatus.ACTIVE;      // ACTIVE, BLOCKED, EXPIRED
+
+    @Column(nullable = false)
+    private BigDecimal balance = BigDecimal.ZERO;     // DECIMAL(19,4)
+
+    @Embedded
+    CardLimit cardLimit = new CardLimit();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @ToStringExclude
+    private User user; // Привязка к пользователю
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
+    @ToStringExclude
     private List<Transaction> transactions;
 
+    @CreatedDate
+    private LocalDateTime createdAt;
 }

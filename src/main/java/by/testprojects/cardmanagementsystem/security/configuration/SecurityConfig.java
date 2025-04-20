@@ -38,10 +38,24 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/public/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS).permitAll()
-                        .anyRequest().authenticated()
-                )
+
+                        // Админские функции
+                        .requestMatchers(HttpMethod.POST, "/api/cards/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/cards/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/cards/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/api/users/**").hasAuthority("ROLE_ADMIN")
+
+                        // Пользовательские операции
+                        .requestMatchers(HttpMethod.POST, "/api/transactions/**").hasAuthority("ROLE_USER")
+                        .requestMatchers(HttpMethod.GET, "/api/cards/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/transactions/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+
+                        // Остальные
+                        .anyRequest().authenticated())
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .logout(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
